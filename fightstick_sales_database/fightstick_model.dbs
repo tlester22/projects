@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="fightstick_schema" id="Project-56e" database="LogicalDesign" >
+	<comment><![CDATA[Mapping out how the database should look and how the tables will be conncted to each other to assure data integrity.]]></comment>
+	<schema name="INSTANCE" catalogname="fightstick_schema" >
+		<table name="categories" prior="CATEGORIES" >
+			<column name="category_id" type="INT" jt="4" mandatory="y" />
+			<column name="category_name" type="VARCHAR" length="160" jt="12" />
+			<index name="pk_CATEGORIES" unique="PRIMARY_KEY" >
+				<column name="category_id" />
+			</index>
+		</table>
+		<table name="channels" prior="Entity" >
+			<column name="channel_id" type="INT" jt="4" mandatory="y" />
+			<column name="channel_name" type="VARCHAR" length="160" jt="12" />
+			<index name="pk_channels" unique="PRIMARY_KEY" >
+				<column name="channel_id" />
+			</index>
+		</table>
+		<table name="original_csv" prior="original" >
+			<comment><![CDATA[how the data in the original csv looked]]></comment>
+			<column name="SELLER" type="VARCHAR" length="160" jt="12" />
+			<column name="SELLER_ID" type="INT" jt="4" />
+			<column name="BUYER" type="VARCHAR" length="160" jt="12" />
+			<column name="CHANNEL_ID" type="INT" jt="4" />
+			<column name="CHANNEL" type="VARCHAR" length="160" jt="12" />
+			<column name="CATEGORY_ID" type="VARCHAR" length="160" jt="12" />
+			<column name="CATEGORY" type="VARCHAR" length="160" jt="12" />
+			<column name="PRODUCT_NAME" type="VARCHAR" length="160" jt="12" />
+			<column name="PRICE" type="DECIMAL" length="2" jt="3" />
+			<column name="SALE_ID" type="INT" jt="4" />
+			<column name="DATE_POSTED" type="DATE" jt="91" />
+			<column name="SELLER_REGION" type="VARCHAR" length="160" jt="12" />
+			<column name="REGION_ID" type="INT" jt="4" />
+		</table>
+		<table name="products" prior="Entity" >
+			<column name="product_name" type="VARCHAR" length="250" jt="12" mandatory="y" />
+			<column name="sale_id" type="INT" jt="4" mandatory="y" />
+			<column name="price" type="MONEY" jt="3" />
+			<column name="category_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_products" unique="PRIMARY_KEY" >
+				<column name="product_name" />
+				<column name="sale_id" />
+				<column name="category_id" />
+			</index>
+			<index name="unq_product_name" unique="UNIQUE_INDEX" >
+				<column name="product_name" />
+			</index>
+			<fk name="fk_products_channels" to_schema="fightstick_schema.INSTANCE" to_table="categories" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="category_id" pk="category_id" />
+			</fk>
+			<fk name="fk_products_sales" to_schema="fightstick_schema.INSTANCE" to_table="sales" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="sale_id" pk="sale_id" />
+			</fk>
+		</table>
+		<table name="regions" prior="region" >
+			<column name="region_id" type="INT" jt="4" mandatory="y" />
+			<column name="region_abbrev" type="VARCHAR" length="160" jt="12" />
+			<index name="pk_regions" unique="PRIMARY_KEY" >
+				<column name="region_id" />
+			</index>
+		</table>
+		<table name="sales" prior="Entity" >
+			<column name="sale_id" type="INT" jt="4" mandatory="y" />
+			<column name="product_name" type="VARCHAR" length="160" jt="12" mandatory="y" />
+			<column name="seller_id" type="INT" jt="4" mandatory="y" />
+			<column name="date_posted" type="DATE" jt="91" />
+			<column name="channel_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_sales" unique="PRIMARY_KEY" >
+				<column name="sale_id" />
+				<column name="product_name" />
+				<column name="seller_id" />
+				<column name="channel_id" />
+			</index>
+			<index name="unq_sale_id" unique="UNIQUE_INDEX" >
+				<column name="sale_id" />
+			</index>
+			<fk name="fk_sales_products" to_schema="fightstick_schema.INSTANCE" to_table="products" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="product_name" pk="product_name" />
+			</fk>
+			<fk name="fk_sales_users" to_schema="fightstick_schema.INSTANCE" to_table="users" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="seller_id" pk="user_id" />
+			</fk>
+			<fk name="fk_sales_channels" to_schema="fightstick_schema.INSTANCE" to_table="channels" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="channel_id" pk="channel_id" />
+			</fk>
+		</table>
+		<table name="users" prior="Entity" >
+			<column name="user_id" type="INT" jt="4" mandatory="y" />
+			<column name="username" type="VARCHAR" length="160" jt="12" />
+			<column name="region_id" type="INT" jt="4" mandatory="y" />
+			<index name="pk_users" unique="PRIMARY_KEY" >
+				<column name="user_id" />
+				<column name="region_id" />
+			</index>
+			<fk name="fk_users_regions" to_schema="fightstick_schema.INSTANCE" to_table="regions" type="Identifying" mandatory="y" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="region_id" pk="region_id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-17d9" joined_routing="y" show_relation="columns" >
+		<entity schema="fightstick_schema.INSTANCE" name="categories" color="C1D8EE" x="656" y="528" />
+		<entity schema="fightstick_schema.INSTANCE" name="channels" color="C1D8EE" x="208" y="752" />
+		<entity schema="fightstick_schema.INSTANCE" name="original_csv" color="C1D8EE" x="624" y="944" />
+		<entity schema="fightstick_schema.INSTANCE" name="products" color="C1D8EE" x="432" y="528" />
+		<entity schema="fightstick_schema.INSTANCE" name="regions" color="C1D8EE" x="624" y="752" />
+		<entity schema="fightstick_schema.INSTANCE" name="sales" color="C1D8EE" x="208" y="528" />
+		<entity schema="fightstick_schema.INSTANCE" name="users" color="C1D8EE" x="432" y="752" />
+		<callout x="48" y="48" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Create new entities by right-clicking the layout. 
+- Double-click entity headers to edit.
+- For a better understanding of the schema, create multiple layouts.
+- Deploy the model into the database by converting it first to the physical design.]]></comment>
+		</callout>
+	</layout>
+</project>

@@ -1,4 +1,4 @@
-#Bank Database Project
+# Bank Database Project
 
 A sample bank database created from csv data that was cleaned 
 and reorganized using pandas. The csvs hold the table data and

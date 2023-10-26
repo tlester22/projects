@@ -1,0 +1,108 @@
+<html lang='en'>
+<!--reccomended to specify what language your website is in-->
+
+<head><title>Pokemon Champions Homepage</title>
+<link rel='stylesheet' href='pokemon_homepage_stylesheet_v3.css'>
+<!--link to stylesheet-->
+
+<meta name='viewport' content='width=device-width, initial-scale=1'/>
+
+<script>
+
+    function choose (){
+	var type = document.getElementById("type");
+	let judgement = ''
+	
+            if (type.value === 'dark'|| type.value === 'grass' ) {
+                judgement = 'MEOWSCARADA is just your type!'
+            } else if (type.value === 'fire'|| type.value === 'flying' ) {
+                judgement = "TALONFLAME just your type!"
+            } else if (type.value === 'poison'|| type.value === 'dragon' ) {
+                judgement = "GOODRA just your type!" 
+            } else if (type.value === 'water'|| type.value === 'fairy' ) {
+                judgement = "AZUMARILL just your type!" 
+            } else if (type.value === 'steel') {
+                judgement = "ORTHWORM just your type!" 
+            } else {
+				judgement = "None of the Pokémon Champions are your type."
+			}
+			
+	document.getElementById('output').innerHTML = judgement
+    };
+
+</script>
+	
+</head>
+
+<body background='https://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png'>
+
+<div class='top' style=margin-bottom:2%;>
+	<h1>PALDEA'S STRONGEST TEAM</h1>
+</div>
+<div class='top'>
+	<h3>Introducing the team that helped Paldea's newest Pokémon Champion defeat gym leaders, The Elite Four and 
+		former champions alike! Can your pokémon take the heat? Click on the images below to learn more about what 
+		makes these pokémon fit for a champion's team!
+	</h3>
+	
+</div>
+
+<div class='outer'>
+
+	<h1>OFFENSE</h1>
+
+	<div class='container'>
+
+		<div class='left'>
+			<a href="https://www.albany.edu/~tl548746/pokemon_meowscarada.html" title='MEOWSCARADA'><img class='pic' src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/908.png" alt="Meowscarada"></a>
+		</div>
+
+		<div class='middle'>
+			<a href="https://www.albany.edu/~tl548746/pokemon_talonflame.html" title='TALONFLAME'><img class='pic' src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/663.png" alt="Talonflame"></a>
+		</div>
+
+		<div class='right'>
+		<a href="https://www.albany.edu/~tl548746/pokemon_goodra.html" title='GOODRA'><img class='pic' src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/706.png" alt="Goodra"></a>
+		</div>
+
+	</div>
+</div>
+<div class='outer'>	
+
+	<h1>DEFENSE</h1>
+
+	<div class='container'>
+		<div class='left'>
+			<a href="https://www.albany.edu/~tl548746/pokemon_azumarill.html" title='AZUMARILL'><img class='pic' src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/184.png" alt="Azumarill"></a>
+		</div>
+
+		<div class='right'>
+			<a href="https://www.albany.edu/~tl548746/pokemon_orthworm.html" title='ORTHWORM'><img class='pic' src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/968.png" alt="Orthworm"></a>
+		</div>
+	</div>
+ </div>
+ 
+		<article style=padding-bottom:6%;>
+			<h2>Not sure where to start? Pick a pokémon type!</h2>
+			<h2>grass - dark - flying - fire - dragon - poison - water - fairy - steel</h2>
+			<select id="type" name="type" size='4'>
+				<option value="grass">grass</option>
+				<option value="dark">dark</option>
+				<option value="flying">flying</option>
+				<option value="fire">fire</option>
+				<option value="dragon">dragon</option>
+				<option value="poison">poison</option>
+				<option value="water">water</option>
+				<option value="fairy">fairy</option>
+				<option value="steel">steel</option>
+			</select>
+			<button onclick='choose()'>CHOOSE</button>
+			
+			<h1 id='output'></h1>
+		</article>
+ 
+	<footer>
+		<p>***not an official Pokémon website***</p>
+	</footer>
+</body>
+</html>

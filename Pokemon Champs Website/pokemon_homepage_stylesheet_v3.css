@@ -1,0 +1,126 @@
+@import url(https://db.onlinewebfonts.com/c/3d5f94badc5c3a15e620a9da9089b726?family=Magistral+Cond+W08+Medium);
+
+body {
+float:none;
+text-align: center;
+background-color:#3466af;
+color: #ffcb05;
+font-family: "Magistral Cond W08 Medium";
+}
+
+.top {
+background-color:inherit;
+text-align: center;
+color:inherit;
+}
+
+.minitop {
+background-color:inherit;
+text-align: center;
+color:inherit;
+padding: 5%;
+}
+
+.outer {
+text-align: center;
+color:#1d2c5e;
+background-color: #c7a008;
+border: 20px;
+border-style: outset;
+border-color: ffcb05;
+margin: 5%;
+padding-bottom: 4%;
+}
+
+.container {
+display: flex;
+justify-content: center;
+}
+
+.left {
+border: 10px;
+border-color:#ffcb05;
+border-style: inset;
+border-right-style: hidden;
+background-color: #1d2c5e;
+color: #ffcb05;
+text-align: center;
+float: left;
+width: 30%;
+padding-bottom: 3%
+}
+
+
+.middle {
+border: 10px;
+border-color: #ffcb05;
+border-style: inset;
+border-left-style: hidden;
+border-right-style: hidden;
+background-color: #1d2c5e;
+color: #ffcb05;
+text-align: center;
+float: left;
+width: 30%;
+}
+
+.right {
+border: 10px;
+border-color: #ffcb05;
+border-style: inset;
+border-left-style: hidden;
+background-color: #1d2c5e;
+color: #ffcb05;
+text-align: center;
+float: left;
+width: 30%;
+padding-bottom: 3%
+}
+
+.bigright {
+border: 10px;
+border-color: #ffcb05;
+border-style: inset;
+border-left-style: hidden;
+background-color: #1d2c5e;
+color: #ffcb05;
+text-align: center;
+float: left;
+width: 65%;
+padding-bottom: 3%	
+}
+
+.pic {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+/* unvisited link */
+	a:link {
+	color: #25be88;
+	}
+
+	/* visited link */
+	a:visited {
+	color: #7425be;
+	}
+
+	/* mouse over link */
+	a:hover {
+	color: #FF00FF;
+	}
+
+	/* selected link */
+	a:active {
+	color: #0000FF;
+	}
+
+@media screen and (max-width: 575px) {
+		.container{display:block;}
+		.right{width:90%; float:none; height:30%; border-style: hidden; margin:auto;}
+		.left{width:90%; float:none; height:30%; border-style: hidden; margin:auto;}
+		.middle{width:90%; float:none; height:30%; border-style: hidden; margin:auto;}
+		.bigright{width: 90%; float:none; height:auto; border-style:hidden; margin:auto;}
+		.pic{object-fit: scale-down;}
+	}
